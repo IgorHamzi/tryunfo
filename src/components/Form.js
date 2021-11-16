@@ -2,6 +2,31 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class Form extends React.Component {
+  hasCardTrunfo = () => {
+    let result;
+    const { hasTrunfo, cardTrunfo, onInputChange } = this.props;
+    if (hasTrunfo === false) {
+      result = (
+        <label htmlFor="superTryunfo">
+          Super Trunfo
+          <input
+            name="cardTrunfo"
+            type="checkbox"
+            data-testid="trunfo-input"
+            checked={ cardTrunfo }
+            onChange={ onInputChange }
+          />
+        </label>);
+    } else {
+      result = (
+        <span data-testid="trunfo-input">
+          Você já tem um Super Trunfo em seu baralho
+        </span>
+      );
+    }
+    return result;
+  }
+
   render() {
     const {
       cardName,
@@ -11,14 +36,14 @@ class Form extends React.Component {
       cardAttr3,
       cardImage,
       cardRare,
-      cardTrunfo,
-      // hasTrunfo,
       isSaveButtonDisabled,
       onInputChange,
       onSaveButtonClick,
+      handleSubmit,
     } = this.props;
+
     return (
-      <form>
+      <form onSubmit={ handleSubmit }>
         <label htmlFor="name">
           Nome :
           <input
@@ -92,16 +117,7 @@ class Form extends React.Component {
             <option value="muito raro">muito raro</option>
           </select>
         </label>
-        <label htmlFor="superTryunfo">
-          Super Trunfo
-          <input
-            name="cardTrunfo"
-            type="checkbox"
-            data-testid="trunfo-input"
-            checked={ cardTrunfo }
-            onChange={ onInputChange }
-          />
-        </label>
+        {this.hasCardTrunfo()}
         <button
           type="button"
           data-testid="save-button"
@@ -118,16 +134,33 @@ class Form extends React.Component {
 Form.propTypes = {
   cardName: PropTypes.string.isRequired,
   cardDescription: PropTypes.string.isRequired,
-  cardAttr1: PropTypes.string.isRequired,
-  cardAttr2: PropTypes.string.isRequired,
-  cardAttr3: PropTypes.string.isRequired,
+  cardAttr1: PropTypes.number.isRequired,
+  cardAttr2: PropTypes.number.isRequired,
+  cardAttr3: PropTypes.number.isRequired,
   cardImage: PropTypes.string.isRequired,
   cardRare: PropTypes.string.isRequired,
   cardTrunfo: PropTypes.bool.isRequired,
-  // hasTrunfo: PropTypes.bool.isRequired,
+  hasTrunfo: PropTypes.bool.isRequired,
   isSaveButtonDisabled: PropTypes.bool.isRequired,
   onInputChange: PropTypes.func.isRequired,
   onSaveButtonClick: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
 };
 
 export default Form;
+
+// handleSubmit(event) {
+//   const { addNewCard } = this.props;
+//   event.preventDefault();
+//   addNewCard(this.state);
+// }
+
+// // addNewCard(topic) {
+// //   this.setState((prevState) => ({
+// //     cards: [...prevState, topic],
+// //   }));
+// // }
+
+//   this.onInputChange = this.onInputChange.bind(this);
+//   this.handleSubmit = this.handleSubmit.bind(this);
+// }
