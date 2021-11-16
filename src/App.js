@@ -1,4 +1,3 @@
-// Requisito 4 - Realizado com a ajuda do Ivan Mastrangelo - turma 16A
 import React from 'react';
 import Form from './components/Form';
 import Card from './components/Card';
@@ -169,11 +168,3 @@ class App extends React.Component {
 }
 
 export default App;
-
-// this.addNewCard = this.addNewCard.bind(this);
-// this.onInputChange = this.onInputChange.bind(this);
-// this.handleSubmit = this.handleSubmit.bind(this);
-
-// App.propTypes = {
-//   addNewCard: PropTypes.func.isRequired,
-// };

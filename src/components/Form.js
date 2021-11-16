@@ -148,19 +148,3 @@ Form.propTypes = {
 };
 
 export default Form;
-
-// handleSubmit(event) {
-//   const { addNewCard } = this.props;
-//   event.preventDefault();
-//   addNewCard(this.state);
-// }
-
-// // addNewCard(topic) {
-// //   this.setState((prevState) => ({
-// //     cards: [...prevState, topic],
-// //   }));
-// // }
-
-//   this.onInputChange = this.onInputChange.bind(this);
-//   this.handleSubmit = this.handleSubmit.bind(this);
-// }
